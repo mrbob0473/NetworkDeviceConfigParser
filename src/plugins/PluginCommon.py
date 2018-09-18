@@ -8,7 +8,7 @@ from abc import ABCMeta
 from enum import Enum
 
 
-class PluginTyps(Enum):
+class PluginTypes(Enum):
     TYPE_PARSER = 1
     TYPE_OUTPUT = 2
 
