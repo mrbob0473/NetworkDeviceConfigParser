@@ -1,0 +1,16 @@
+!
+! Last configuration change at 23:36:27 PDT Thu Oct 25 2018 by jugu
+! NVRAM config last updated at 22:57:04 PDT Thu Oct 25 2018 by jugu
+!
+version 15.5
+service timestamps debug datetime localtime show-timezone
+service timestamps log datetime localtime show-timezone
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+!
+hostname test-router
+!
+boot-start-marker
+boot-end-marker
+!
+end

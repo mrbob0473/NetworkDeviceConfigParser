@@ -20,7 +20,9 @@ class ConfigParserPluginBaseClassTestCase(unittest.TestCase):
         self.assertEqual(self.testObject.getPluginType(), PluginTypes.TYPE_PARSER)
 
     def testLoadConfigFile(self):
-        self.testObject.loadConfigFile("ConfigParserPluginBaseClassTestCase.txt")
+        with self.assertRaises(NotImplementedError):
+            self.testObject.loadConfigFile("ConfigParserPluginBaseClassTestCase.txt")
+        self.testObject.loadConfigFile("ConfigParserPluginBaseClassTestCase.txt", True)
         self.testFileFirstLine = self.testObject.configFile.readline()
         self.assertEqual(self.testFileFirstLine, "ConfigParserPluginBaseClassTestCase Sample File")
 

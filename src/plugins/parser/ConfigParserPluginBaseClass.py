@@ -10,6 +10,12 @@ import mmap
 import os
 
 
+class InvalidConfigurationFileError(Exception):
+    def __init__(self, message):
+        # Call the base class constructor with the parameters it needs
+        super(InvalidConfigurationFileError, self).__init__(message)
+
+
 class ConfigParserPluginBaseClass(PluginBaseClass, metaclass=ABCMeta):
     '''
     ConfigParserPluginBaseClass is an abstract bases class that defines the base class
@@ -34,9 +40,12 @@ class ConfigParserPluginBaseClass(PluginBaseClass, metaclass=ABCMeta):
     def getPluginType(self):
         return PluginTypes.TYPE_PARSER
 
-    def loadConfigFile(self, configFilePath):
+    def loadConfigFile(self, configFilePath, noValidate=False):
         if not os.path.isfile(configFilePath):
             raise FileNotFoundError(configFilePath)
         else:
             self.configFilePath = configFilePath
             self.configFile = open(configFilePath, 'r')
+            if noValidate is False:
+                if self.isMyConfig() is not True:
+                    raise InvalidConfigurationFileError(configFilePath + " is not a valid configuration file.")
